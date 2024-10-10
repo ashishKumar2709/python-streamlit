@@ -132,16 +132,16 @@ elif analysis_option == "Top Repositories":
     top_n = st.slider("Select Number of Top Repositories", min_value=5, max_value=50, value=10)
 
     if file_option == "Github Dataset":
-        st.write("Top Repositories by Stars:")
+        
         top_by_stars = github_dataset.nlargest(top_n, 'stars_count')[['repositories', 'stars_count', 'language']]
-        st.write("Top Repositories by Forks:")
+        
         top_by_forks = github_dataset.nlargest(top_n, 'forks_count')[['repositories', 'forks_count', 'language']]
     if file_option == "Repository Data":
-        st.write("Top Repositories by Stars:")
         top_by_stars = repo_data.nlargest(top_n, 'stars_count')[['name', 'stars_count', 'primary_language']]
-        st.write("Top Repositories by Forks:")
         top_by_forks = repo_data.nlargest(top_n, 'forks_count')[['name', 'forks_count', 'primary_language']]
+    st.write("Top Repositories by Stars:")
     st.dataframe(top_by_stars)
+    st.write("Top Repositories by Forks:")
     st.dataframe(top_by_forks)
 
 
